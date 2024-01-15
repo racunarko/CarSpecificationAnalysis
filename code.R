@@ -1,5 +1,6 @@
 # Loading data
 cardata = read.csv('/Users/dominik/Desktop/CarSpecificationAnalysis/datasets/car_specifications.csv')
+cardata = na.omit(cardata)
 
 require(nortest)
 lillie.test(cardata$horsepower)
@@ -29,12 +30,10 @@ summary(model)
 
 anova(model)
 
-# Assuming 'a' is the ANOVA model you created
 a = aov(cardata$horsepower ~ cardata$drive.wheels)
 
-# Perform a post-hoc test (Tukey's test is commonly used)
+# Performing a post-hoc test (Tukey's test is commonly used)
 posthoc = TukeyHSD(a)
 
-# Print the results
 print(posthoc)
 
